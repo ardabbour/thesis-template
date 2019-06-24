@@ -1,0 +1,94 @@
+% Basic formatting
+% ---------------------------------------------------
+\documentclass[12pt, oneside, a4paper]{report}
+\usepackage[utf8]{inputenc}
+\usepackage[rmargin=2.5cm, lmargin=3.5cm, tmargin=2.5cm, bmargin=2.5cm]{geometry}
+\usepackage{thesis}
+\usepackage{lipsum}
+
+% Define thesis name, author, advisor, etc.
+% ---------------------------------------------------
+\def\thesistitle{ThesisTitle}
+
+\def\student{Author McAuthorson\xspace}
+
+\def\advisor{AdvisorTitle AdvisorName\xspace}
+% \def\coadvisor{CoAdvisorTitle CoadvisorName\xspace}
+
+\def\domjurya{JuryMemberTitle JuryMemberName\xspace}
+% \def\domjuryb{JuryMemberTitle JuryMemberName\xspace}
+\def\forjury{ForeignJuryMemberTitle ForeignJuryMemberName\xspace}
+\def\forjuryuni{ForeignUniversityName\xspace}
+
+\def\uniloc{City, Country\xspace}
+\def\uni{UniversityName\xspace}
+\def\school{SchoolName\xspace}
+\def\major{MajorName\xspace}
+\def\degree{Doctor of Philosophy/Master of Science/Arts/etc.\xspace}
+\def\degreeabv{PhD./MSc./MA/etc.\xspace}
+
+\def\thesistitletr{ThesisTurkishTitle}
+\def\advisortr{AdvisorTurkishTitle AdvisorName\xspace}
+% \def\coadvisortr{CoAdvisorTurkishTitle AdvisorName\xspace}
+\def\majortr{MajorTurkishName\xspace}
+\def\degreetr{Doktora/Y\"{u}ksek L\.{ı}sans\xspace}
+
+\def\day{19}
+\def\month{January}
+\def\monthtr{Ocak}
+\def\year{2038}
+
+% Add references
+% ---------------------------------------------------
+\addbibresource{references.bib}
+
+% ---------------------------------------------------
+% ---------------------------------------------------
+
+\begin{document} 
+    % Cover, approval, and copyrighting - no page numbering
+    % -----------------------------------------------
+    \pagenumbering{gobble}
+    \import{"frontmatter/"}{cover}
+    \import{"frontmatter/"}{approval}
+    \import{"frontmatter/"}{copyright}
+
+    % EN/TR abstracts, acknowledgements, and dedication - start roman page numbering from 3
+    % -----------------------------------------------
+    \clearpage \pagenumbering{roman} \setcounter{page}{3}
+    \import{"frontmatter/"}{abstract}
+    \import{"frontmatter/"}{ozet}
+    \import{"frontmatter/"}{acknowledgments}
+    \import{"frontmatter/"}{dedication}
+
+    % TOC, lists of figures, tables, and algorithms
+    % -----------------------------------------------
+    \tableofcontents
+    \listoffigures
+    \listoftables
+    \listofalgorithms
+
+    % Chapters - start Arabic page numbering from 1
+    % -----------------------------------------------
+    \clearpage \pagenumbering{arabic} \setcounter{page}{1} \onehalfspacing
+    \import{"chapters/"}{chapter-1}
+    \import{"chapters/"}{chapter-2}
+    \import{"chapters/"}{chapter-3}
+    \import{"chapters/"}{chapter-4}
+    \import{"chapters/"}{chapter-5}
+    \import{"chapters/"}{chapter-6}
+
+    % Bibliography
+    % -----------------------------------------------
+    \singlespace
+    \addcontentsline{toc}{chapter}{Bibliography}
+    \printbibliography
+
+    % Appendices
+    % -----------------------------------------------
+    \onehalfspacing
+    \begin{appendices}
+        \import{"appendices/"}{appendix-a}
+        \import{"appendices/"}{appendix-b}
+    \end{appendices}
+\end{document}
